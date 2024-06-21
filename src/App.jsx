@@ -5,6 +5,24 @@ import CreateDays from "./components/CreateDays";
 import CreateCardContent from "./components/CreateCardContent";
 import { useState, useEffect } from "react";
 import { weatherAPIKey } from "./components/api-key";
+import { getLocation } from "./components/getLocation";
+import {lat, long} from "./components/getLocation"
+
+getLocation((err, coords) => {
+  if (err) {
+    console.error(err.message);
+  } else {
+    // console.log('Coordinates:', coords);
+    // // You can now use lat and long outside of getLocation function
+    // console.log('Accessed outside function - Latitude:', lat);
+    // console.log('Accessed outside function - Longitude:', long);
+    lat, long
+  }
+});
+
+
+console.log("outside", lat, long)
+
 
 function App() {
   const [filterData, setFilterData] = useState([]);
@@ -13,8 +31,9 @@ function App() {
 
   // const cityFixed = "london";
   const loadWeather = async () => {
+    const weatherAPIWeatherForecastLatLong = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${weatherAPIKey}&units=metric`;
     const weatherAPIWeatherForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherAPIKey}&units=metric`;
-
+    
     try {
       const response = await fetch(weatherAPIWeatherForecast);
       if (!response.ok) throw response;
