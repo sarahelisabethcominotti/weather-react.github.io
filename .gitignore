@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # API calling
-*.api-key
+api-key.js
