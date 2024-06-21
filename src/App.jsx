@@ -4,13 +4,13 @@ import ChangeBackground from "./components/ChangeBackground";
 import CreateDays from "./components/CreateDays";
 import CreateCardContent from "./components/CreateCardContent";
 import { useState, useEffect } from "react";
+import { weatherAPIKey } from "./components/api-key";
 
 function App() {
   const [filterData, setFilterData] = useState([]);
   const [city, setCity] = useState(`London`);
   const [currentCity, setCurrentCity] = useState("");
 
-  const weatherAPIKey = "f6916935ad851f78c6dbd897f6f52ac7";
   // const cityFixed = "london";
   const loadWeather = async () => {
     const weatherAPIWeatherForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherAPIKey}&units=metric`;
