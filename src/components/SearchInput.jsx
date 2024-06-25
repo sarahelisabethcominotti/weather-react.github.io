@@ -1,35 +1,36 @@
-// import { useState } from "react";
+import { Button, Grid, TextField } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
 
 function SearchInput(props) {
-    console.log(props)
   return (
-
     <div id="pick-city">
-        
       <form id="city-form" onSubmit={props.handler}>
-        <div className="city-form row mb-2 mt-2">
-          <div className="col">
-            <input
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={8}>
+            <TextField
+              fullWidth
               type="text"
-              className="form-control"
               id="city"
               name="city"
-              placeholder="pick your city.."
+              placeholder="Pick your city..."
               value={props.city}
               onChange={(e) => props.setter(e.target.value)}
+              variant="outlined"
             />
-          </div>
-          <div className="col">
-            <button
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Button
+              variant="contained"
               type="submit"
-              className="btn btn-primary"
-              id="search-button"
+              color="primary"
+              startIcon={<SearchIcon />}
+              fullWidth
             >
               Search
-            </button>
-          </div>
-        </div>
+            </Button>
+          </Grid>
+        </Grid>
       </form>
     </div>
   );
@@ -38,7 +39,7 @@ function SearchInput(props) {
 SearchInput.propTypes = {
   handler: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
-  setter: PropTypes.func.isRequired
+  setter: PropTypes.func.isRequired,
 };
 
 export default SearchInput;

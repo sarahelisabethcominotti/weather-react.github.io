@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 function CreateCardContent({ data, city }) {
   return (
@@ -10,7 +10,7 @@ function CreateCardContent({ data, city }) {
               <div>
                 <div className="card-body">
                   <h5 className="card-title">
-                    City{" "}
+                    City
                     <span role="img" aria-label="city">
                       🏙️
                     </span>
@@ -96,5 +96,10 @@ function CreateCardContent({ data, city }) {
     </>
   );
 }
+
+CreateCardContent.propTypes = {
+  data: PropTypes.object.isRequired,
+  city: PropTypes.string.isRequired,
+};
 
 export default CreateCardContent;

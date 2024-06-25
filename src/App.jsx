@@ -8,6 +8,11 @@ import { weatherAPIKey } from "./components/api-key";
 import { getLocation } from "./components/getLocation";
 import { lat, long } from "./components/getLocation";
 import SearchInput from "./components/SearchInput";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+
 
 getLocation((err) => {
   if (err) {
@@ -83,13 +88,23 @@ function App() {
 
   return (
     <>
-      <header className="z-1">
-        <nav className="navbar bg-info-subtle">
-          <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1">Weather Dashboard</span>
-            <SearchInput handler={handleSubmit} setter={setCity} city={city}/>
-          </div>
-        </nav>
+
+<header className="z-1">
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            Weather Dashboard
+          </Typography>
+          <SearchInput handler={handleSubmit} setter={setCity} city={city}/>
+        </Toolbar>
+      </AppBar>
+    </Box>
       </header>
       <main className="z-0">
         <div className="pt-3 ps-3 pe-3 pb-3 mt-2 weather-widget">
