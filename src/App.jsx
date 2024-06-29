@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import ChangeBackground from "./components/ChangeBackground";
@@ -6,34 +7,35 @@ import CreateCardContent from "./components/CreateCardContent";
 import { useState, useEffect } from "react";
 import { weatherAPIKey } from "./components/api-key";
 import { getLocation } from "./components/getLocation";
-import { lat, long } from "./components/getLocation";
+import { lat, long, timestamp } from "./components/getLocation";
 import SearchInput from "./components/SearchInput";
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-
-
-getLocation((err) => {
-  if (err) {
-    console.error(err.message);
-  } else {
-    // console.log('Coordinates:', coords);
-    // // You can now use lat and long outside of getLocation function
-    // console.log('Accessed outside function - Latitude:', lat);
-    // console.log('Accessed outside function - Longitude:', long);
-    lat, long;
-  }
-});
-
-console.log("outside", lat, long);
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { cityLocation } from "./components/getLocation";
 
 function App() {
+  getLocation((err) => {
+    if (err) {
+      console.error(err.message);
+    } else {
+      // console.log('Coordinates:', coords);
+      // // You can now use lat and long outside of getLocation function
+      console.log("Accessed outside function - Latitude:", lat);
+      console.log("Accessed outside function - Longitude:", long);
+      lat, long, timestamp;
+    }
+  });
+
+  // cityLocation(lat, long)
+
+  console.log("outside", cityLocation(lat, long));
+
   const [filterData, setFilterData] = useState([]);
   const [city, setCity] = useState("London");
   const [currentCity, setCurrentCity] = useState("");
 
-  // const cityFixed = "london";
   const loadWeather = async () => {
     // const weatherAPIWeatherForecastLatLong = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${weatherAPIKey}&units=metric`;
     const weatherAPIWeatherForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherAPIKey}&units=metric`;
@@ -88,23 +90,26 @@ function App() {
 
   return (
     <>
-
-<header className="z-1">
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Weather Dashboard
-          </Typography>
-          <SearchInput handler={handleSubmit} setter={setCity} city={city}/>
-        </Toolbar>
-      </AppBar>
-    </Box>
+      <header className="z-1">
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              >
+                Weather Dashboard
+              </Typography>
+              <SearchInput
+                handler={handleSubmit}
+                setter={setCity}
+                city={city}
+              />
+            </Toolbar>
+          </AppBar>
+        </Box>
       </header>
       <main className="z-0">
         <div className="pt-3 ps-3 pe-3 pb-3 mt-2 weather-widget">
