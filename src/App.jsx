@@ -6,7 +6,7 @@ import CreateDays from "./components/CreateDays";
 import CreateCardContent from "./components/CreateCardContent";
 import { useState, useEffect } from "react";
 import { weatherAPIKey } from "./components/api-key";
-import { getLocation } from "./components/getLocation";
+import { getLocation, userCity } from "./components/getLocation";
 import { lat, long, timestamp } from "./components/getLocation";
 import SearchInput from "./components/SearchInput";
 import AppBar from "@mui/material/AppBar";
@@ -16,30 +16,45 @@ import Typography from "@mui/material/Typography";
 import { cityLocation } from "./components/getLocation";
 
 function App() {
-  getLocation((err) => {
-    if (err) {
-      console.error(err.message);
-    } else {
-      // console.log('Coordinates:', coords);
-      // // You can now use lat and long outside of getLocation function
-      console.log("Accessed outside function - Latitude:", lat);
-      console.log("Accessed outside function - Longitude:", long);
-      lat, long, timestamp;
-    }
-  });
-
   // cityLocation(lat, long)
 
-  console.log("outside", cityLocation(lat, long));
+  // console.log("outside", cityLocation(lat, long));
+  // console.log("outside city", userCity);
 
   const [filterData, setFilterData] = useState([]);
-  const [city, setCity] = useState("London");
-  const [currentCity, setCurrentCity] = useState("");
+  //userCity to be put below to render that city on first load
+  const [city, setCity] = useState("");
+  console.log("city:", city);
+  useEffect(() => {
+    getLocation(async (err) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log("Accessed outside function - Latitude:", lat);
+        console.log("Accessed outside function - Longitude:", long);
+        lat, long, timestamp, userCity;
 
-  const loadWeather = async () => {
+        try {
+          const cityName = await cityLocation(lat, long);
+          console.log("Accessed outside function - User City:", city);
+          setCity(cityName);
+          loadWeather(cityName);
+        } catch (err) {
+          console.error("Error fetching city location:", err);
+        }
+      }
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   if (city) {
+  //     loadWeather(city);
+  //   }
+  // }, [city]);
+
+  const loadWeather = async (city) => {
     // const weatherAPIWeatherForecastLatLong = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${weatherAPIKey}&units=metric`;
     const weatherAPIWeatherForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherAPIKey}&units=metric`;
-
     try {
       const response = await fetch(weatherAPIWeatherForecast);
       if (!response.ok) throw response;
@@ -58,13 +73,20 @@ function App() {
 
   // console.log(filterData)
 
-  useEffect(() => {
-    loadWeather(currentCity);
-  }, [currentCity]);
+  // useEffect(() => {
+  //   loadWeather(currentCity);
+  // }, [currentCity]);
+
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setCurrentCity(city);
+    if (city) {
+      // setCity(city);
+      loadWeather(city);
+    }
   };
 
   const daysWeek = [
@@ -103,6 +125,7 @@ function App() {
                 Weather Dashboard
               </Typography>
               <SearchInput
+                handlerCity={handleCityChange}
                 handler={handleSubmit}
                 setter={setCity}
                 city={city}
