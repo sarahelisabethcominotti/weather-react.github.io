@@ -24,7 +24,8 @@ function App() {
   const [filterData, setFilterData] = useState([]);
   //userCity to be put below to render that city on first load
   const [city, setCity] = useState("");
-  console.log("city:", city);
+  // console.log("city:", city);
+  
   useEffect(() => {
     getLocation(async (err) => {
       if (err) {

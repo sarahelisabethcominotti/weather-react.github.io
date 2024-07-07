@@ -19,9 +19,11 @@ export function getLocation(callback) {
 
   function error() {
     //instead of console log prompt the user to use the search bar
-    // alert("Location has been disabled, please search for a city")
-    console.log("Geolocation error!");
-    callback(new Error("Geolocation error!"));
+    // console.log("Geolocation error!");
+    new Error(
+      "Geolocation error!",
+      alert("Your location has been disabled, please search for a city")
+    );
   }
 }
 
