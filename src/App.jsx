@@ -6,14 +6,13 @@ import CreateDays from "./components/CreateDays";
 import CreateCardContent from "./components/CreateCardContent";
 import { useState, useEffect } from "react";
 import { weatherAPIKey } from "./components/api-key";
-import { getLocation, userCity } from "./components/getLocation";
-import { lat, long, timestamp } from "./components/getLocation";
+import { getLocation, userCity, lat, long, timestamp, cityLocation } from "./components/getLocation";
 import SearchInput from "./components/SearchInput";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { cityLocation } from "./components/getLocation";
 
 function App() {
   // cityLocation(lat, long)
@@ -25,8 +24,10 @@ function App() {
   //userCity to be put below to render that city on first load
   const [city, setCity] = useState("");
   // console.log("city:", city);
+  const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
+    setIsLoading(true)
     getLocation(async (err) => {
       if (err) {
         console.error(err.message);
@@ -40,12 +41,14 @@ function App() {
           console.log("Accessed outside function - User City:", city);
           setCity(cityName);
           loadWeather(cityName);
+          setIsLoading(false)
         } catch (err) {
           console.error("Error fetching city location:", err);
         }
       }
     });
   }, []);
+  console.log(isLoading)
 
   // useEffect(() => {
   //   if (city) {
@@ -136,6 +139,9 @@ function App() {
         </Box>
       </header>
       <main className="z-0">
+      <div>
+      {isLoading ? <h3 className="mt-4">Finding your city...</h3> : null}
+      {
         <div className="pt-3 ps-3 pe-3 pb-3 mt-2 weather-widget">
           <ul className="nav nav-tabs p-2 card" id="myTab" role="tablist">
             {daysArray.map((day, i) => (
@@ -158,6 +164,8 @@ function App() {
             )}
           </div>
         </div>
+        }
+    </div>
       </main>
 
       <footer></footer>
