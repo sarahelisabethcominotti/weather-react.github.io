@@ -1,3 +1,5 @@
+import { Card } from "@mui/material";
+
 function CreateDays(props) {
 
 let today = new Date();
@@ -21,10 +23,7 @@ const normalDate = formatDate(newDate)
 
 
 return   (
-    
-    <h5 className="mt-3 card">{normalDate}</h5>
-
-    
+    <Card sx={{ bgcolor: "#fff", borderRadius: 1 }}>{normalDate}</Card>
 )
 
 }

@@ -1,31 +1,32 @@
 import { Button, Grid, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
+// import { theme } from "../theme";
 
 function SearchInput(props) {
   return (
-    <div id="pick-city">
-      <form id="city-form" onSubmit={props.handler}>
+    <div>
+      <form onSubmit={props.handler}>
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={6}>
             <TextField
-              fullWidth
+              size="small"
               type="text"
               id="city"
               name="city"
               placeholder="Pick your city..."
               value={props.city}
               onChange={(e) => props.setter(e.target.value)}
-              variant="outlined"
+              variant="standard"
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={6}>
             <Button
               variant="contained"
               type="submit"
-              color="primary"
+              color="cyan"
               startIcon={<SearchIcon />}
-              fullWidth
+              
             >
               Search
             </Button>

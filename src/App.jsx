@@ -6,13 +6,22 @@ import CreateDays from "./components/CreateDays";
 import CreateCardContent from "./components/CreateCardContent";
 import { useState, useEffect } from "react";
 import { weatherAPIKey } from "./components/api-key";
-import { getLocation, userCity, lat, long, timestamp, cityLocation } from "./components/getLocation";
+import {
+  getLocation,
+  userCity,
+  lat,
+  long,
+  timestamp,
+  cityLocation,
+} from "./components/getLocation";
 import SearchInput from "./components/SearchInput";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+// import AntTabs, { AntTab } from "./components-styles";
+import { Tabs, Tab } from "@mui/material";
 
 function App() {
   // cityLocation(lat, long)
@@ -25,9 +34,9 @@ function App() {
   const [city, setCity] = useState("");
   // console.log("city:", city);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     getLocation(async (err) => {
       if (err) {
         console.error(err.message);
@@ -41,14 +50,14 @@ function App() {
           console.log("Accessed outside function - User City:", city);
           setCity(cityName);
           loadWeather(cityName);
-          setIsLoading(false)
+          setIsLoading(false);
         } catch (err) {
           console.error("Error fetching city location:", err);
         }
       }
     });
   }, []);
-  console.log(isLoading)
+  console.log(isLoading);
 
   // useEffect(() => {
   //   if (city) {
@@ -71,6 +80,7 @@ function App() {
       setFilterData(filterData);
     } catch (err) {
       alert("please enter a valid city");
+
       console.error("Error fetching data", err.statusText || err.message);
     }
   };
@@ -90,6 +100,7 @@ function App() {
     if (city) {
       // setCity(city);
       loadWeather(city);
+      setIsLoading(false);
     }
   };
 
@@ -117,55 +128,56 @@ function App() {
   return (
     <>
       <header className="z-1">
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+        <Box sx={{ flexGrow: 1, maxWidth:  300 }}>
+          <AppBar position="fixed" color="light">
             <Toolbar>
               <Typography
                 variant="h6"
-                noWrap
                 component="div"
-                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+                sx={{ flexGrow: 1, fontSize: {xs: 14, sm: 20}}}
               >
                 Weather Dashboard
               </Typography>
               <SearchInput
+                variant="standard"
+                label="standard"
                 handlerCity={handleCityChange}
                 handler={handleSubmit}
                 setter={setCity}
                 city={city}
+         
               />
             </Toolbar>
           </AppBar>
         </Box>
       </header>
       <main className="z-0">
-      <div>
-      {isLoading ? <h3 className="mt-4">Finding your city...</h3> : null}
-      {
         <div className="pt-3 ps-3 pe-3 pb-3 mt-2 weather-widget">
-          <ul className="nav nav-tabs p-2 card" id="myTab" role="tablist">
-            {daysArray.map((day, i) => (
-              <button
-                className={`nav-link ${activeTab === i ? "active" : ""}`}
-                onClick={() => handleTabClick(i)}
-              >
-                {day}
-              </button>
-            ))}
-          </ul>
+          {isLoading ? <h3 className="mt-4">Finding your city...</h3> : null}
 
-          <div className="test-index">
+          <Box sx={{ bgcolor: "#fff", borderRadius: 1 }}>
+            <Tabs variant="scrollable" scrollButtons allowScrollButtonsMobile>
+              {daysArray.map((day, i) => (
+                <Tab
+                  label={day}
+                  className={`${activeTab === i ? "active" : ""}`}
+                  onClick={() => handleTabClick(i)}
+                />
+              ))}
+            </Tabs>
+          </Box>
+
+          <div>
             {filterData.length > 0 && (
               <>
                 <CreateDays i={activeTab} />
                 <CreateCardContent data={filterData[activeTab]} city={city} />
+
                 <ChangeBackground data={filterData[activeTab]} />
               </>
             )}
           </div>
         </div>
-        }
-    </div>
       </main>
 
       <footer></footer>
