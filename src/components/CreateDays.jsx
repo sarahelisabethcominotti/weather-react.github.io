@@ -23,7 +23,7 @@ const normalDate = formatDate(newDate)
 
 
 return   (
-    <Card sx={{ bgcolor: "#fff", borderRadius: 1 }}>{normalDate}</Card>
+    <Card sx={{ bgcolor: "#fff", borderRadius: 1, my: 1 }}>{normalDate}</Card>
 )
 
 }

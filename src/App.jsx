@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-key */
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
-import ChangeBackground from "./components/ChangeBackground";
-import CreateDays from "./components/CreateDays";
-import CreateCardContent from "./components/CreateCardContent";
-import { useState, useEffect } from "react";
+import LoadingPage from "./components/LoadingPage";
+import WeatherApp from "./components/WeatherApp";
+import { useState, useEffect, useContext, createContext } from "react";
 import { weatherAPIKey } from "./components/api-key";
 import {
   getLocation,
@@ -22,6 +21,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 // import AntTabs, { AntTab } from "./components-styles";
 import { Tabs, Tab } from "@mui/material";
+
+export const DataContext = createContext()
 
 function App() {
   // cityLocation(lat, long)
@@ -104,26 +105,11 @@ function App() {
     }
   };
 
-  const daysWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const daysArray = filterData.map(
-    (e) => daysWeek[new Date(e.dt * 1000).getDay()]
-  );
+
 
   // console.log(daysArray);
 
-  const [activeTab, setActiveTab] = useState(0);
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-    // console.log(tabIndex);
-  };
+ 
 
   return (
     <>
@@ -134,7 +120,7 @@ function App() {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ flexGrow: 1, fontSize: {xs: 14, sm: 20}}}
+                sx={{ flexGrow: 1, textAlign: 'left', fontSize: {xs: 14, sm: 20}}}
               >
                 Weather Dashboard
               </Typography>
@@ -152,32 +138,9 @@ function App() {
         </Box>
       </header>
       <main className="z-0">
-        <div className="pt-3 ps-3 pe-3 pb-3 mt-2 weather-widget">
-          {isLoading ? <h3 className="mt-4">Finding your city...</h3> : null}
-
-          <Box sx={{ bgcolor: "#fff", borderRadius: 1 }}>
-            <Tabs variant="scrollable" scrollButtons allowScrollButtonsMobile>
-              {daysArray.map((day, i) => (
-                <Tab
-                  label={day}
-                  className={`${activeTab === i ? "active" : ""}`}
-                  onClick={() => handleTabClick(i)}
-                />
-              ))}
-            </Tabs>
-          </Box>
-
-          <div>
-            {filterData.length > 0 && (
-              <>
-                <CreateDays i={activeTab} />
-                <CreateCardContent data={filterData[activeTab]} city={city} />
-
-                <ChangeBackground data={filterData[activeTab]} />
-              </>
-            )}
-          </div>
-        </div>
+        <DataContext.Provider value={{filterData, city}}>
+          {isLoading ? <LoadingPage/> : <WeatherApp/>}
+          </DataContext.Provider>
       </main>
 
       <footer></footer>
