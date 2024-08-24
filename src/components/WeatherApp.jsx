@@ -14,7 +14,7 @@ function WeatherApp() {
       // console.log(tabIndex);
     };
 
-    const {filterData, city} = useContext(DataContext)
+    const {filterData, city, checked} = useContext(DataContext)
     const daysWeek = [
         "Sunday",
         "Monday",
@@ -45,7 +45,7 @@ function WeatherApp() {
         {filterData.length > 0 && (
           <>
             <CreateDays i={activeTab} />
-            <CreateCardContent data={filterData[activeTab]} city={city} />
+            <CreateCardContent data={filterData[activeTab]} city={city} checked={checked}/>
 
             <ChangeBackground data={filterData[activeTab]} />
           </>

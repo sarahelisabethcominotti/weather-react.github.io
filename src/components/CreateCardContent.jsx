@@ -1,13 +1,17 @@
 import PropTypes from "prop-types";
 import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
 
-function CreateCardContent({ data, city }) {
+function CreateCardContent({ data, city, checked }) {
+
+const celsiusTemperature = Math.floor(data.main.temp * (9/5) + 32)
+const celsiusMax = Math.floor(data.main.temp_max * (9/5) + 32)
+const celsiusMin = Math.floor(data.main.temp_min * (9/5) + 32)
   return (
     <>
       <Box sx={{ minWidth: 280 }}>
-        <Grid container spacing={1} sx={{my: 1}}>
+        <Grid container spacing={1} sx={{ my: 1 }}>
           <Grid item xs={12} md={6}>
-            <Card sx={{ bgcolor: "#fff", borderRadius: 1, height: '115px' }}>
+            <Card sx={{ bgcolor: "#fff", borderRadius: 1, height: "115px" }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>City 🏙️</Typography>
                 <Typography>{city}</Typography>
@@ -18,11 +22,25 @@ function CreateCardContent({ data, city }) {
             <Card sx={{ bgcolor: "#fff", borderRadius: 1 }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Temperature 🌡️</Typography>
-                <Typography>{data.main.temp}&deg;C</Typography>
-                <Typography>
-                  Max: {data.main.temp_max}&deg;C - Min: {data.main.temp_min}
-                  &deg;C
-                </Typography>
+                {checked ? (
+                  <>
+                    <Typography>{data.main.temp}&deg;C</Typography>
+                    <Typography>
+                      Max: {data.main.temp_max}&deg;C - Min:
+                      {data.main.temp_min}
+                      &deg;C
+                    </Typography>
+                  </>
+                ) : (
+                  <>
+                    <Typography>{celsiusTemperature}&deg;F</Typography>
+                    <Typography>
+                      Max: {celsiusMax}&deg;F - Min:
+                      {celsiusMin}
+                      &deg;F
+                    </Typography>
+                  </>
+                )}
               </CardContent>
             </Card>
           </Grid>

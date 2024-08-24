@@ -20,7 +20,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 // import AntTabs, { AntTab } from "./components-styles";
-import { Tabs, Tab } from "@mui/material";
+import { Tabs, Tab, Switch } from "@mui/material";
 
 export const DataContext = createContext()
 
@@ -109,8 +109,10 @@ function App() {
 
   // console.log(daysArray);
 
- 
-
+ const [checked, setChecked] = useState(false)
+const switchHandler = (event) => {
+  setChecked(event.target.checked)
+}
   return (
     <>
       <header className="z-1">
@@ -133,12 +135,15 @@ function App() {
                 city={city}
          
               />
+              <Typography>°F</Typography>
+               <Switch checked={checked} onChange={switchHandler} color="default" />
+               <Typography>°C</Typography>
             </Toolbar>
           </AppBar>
         </Box>
       </header>
       <main className="z-0">
-        <DataContext.Provider value={{filterData, city}}>
+        <DataContext.Provider value={{filterData, city, checked}}>
           {isLoading ? <LoadingPage/> : <WeatherApp/>}
           </DataContext.Provider>
       </main>
