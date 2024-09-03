@@ -12,7 +12,7 @@ const celsiusMin = Math.floor(data.main.temp_min * (9/5) + 32)
       <Box sx={{ minWidth: 280 }}>
         <Grid container spacing={1} sx={{ my: 1 }}>
           <Grid item xs={12} md={6}>
-            <Card sx={{ bgcolor: "#fff", borderRadius: 1, height: "115px" }}>
+            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1, height: "115px" }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>City 🏙️</Typography>
                 <Typography>{city}</Typography>
@@ -20,7 +20,7 @@ const celsiusMin = Math.floor(data.main.temp_min * (9/5) + 32)
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card sx={{ bgcolor: "#fff", borderRadius: 1 }}>
+            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1 }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Temperature 🌡️</Typography>
                 {checked ? (
@@ -48,7 +48,7 @@ const celsiusMin = Math.floor(data.main.temp_min * (9/5) + 32)
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
-            <Card sx={{ bgcolor: "#fff", borderRadius: 1 }}>
+            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1 }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Humidity 💧</Typography>
                 <Typography>{data.main.humidity}%</Typography>
@@ -56,7 +56,7 @@ const celsiusMin = Math.floor(data.main.temp_min * (9/5) + 32)
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card sx={{ bgcolor: "#fff", borderRadius: 1 }}>
+            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1 }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Wind Speed 💨</Typography>
                 <Typography>{data.wind.speed}km/h</Typography>
@@ -64,7 +64,7 @@ const celsiusMin = Math.floor(data.main.temp_min * (9/5) + 32)
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card sx={{ bgcolor: "#fff", borderRadius: 1 }}>
+            <Card sx={{bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1 }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Conditions ⛅️</Typography>
                 <Typography>{data.weather[0].main}</Typography>

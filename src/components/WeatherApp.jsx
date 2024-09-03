@@ -35,7 +35,7 @@ function WeatherApp() {
     <Box sx={{ width: "90%", justifyContent: "center", mx: "auto" }}>
       <Box
         sx={{
-          bgcolor: "#fff",
+          bgcolor: "rgba(224, 247, 250, 0.7)",
           borderRadius: 1,
           my: 1,
           justifyContent: "center",
