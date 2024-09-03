@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
 // import { theme } from "../theme";
@@ -21,14 +21,21 @@ function SearchInput(props) {
             />
           </Grid>
           <Grid item xs={6}>
-            <Button
+            <Button 
               variant="contained"
               type="submit"
               color="primary"
-              startIcon={<SearchIcon />}
-              
+              sx={{
+                display: 'flex',
+                justifyContent: { xs: 'center', sm: 'flex-start' }, // Center icon on small screens, align left with text on larger screens
+                alignItems: 'center',
+                paddingLeft: { xs: '10px', sm: '10px' }, // Adjust padding for small screens
+                paddingRight: { xs: 0, sm: '10px' },
+                minWidth: { xs: 'auto', sm: '64px' } // Ensures button isn't too wide on small screens
+              }}              startIcon={<SearchIcon />}
+
             >
-              Search
+              <Typography sx={{ display: {xs: 'none', sm: 'block'}}}>Search</Typography>
             </Button>
           </Grid>
         </Grid>
