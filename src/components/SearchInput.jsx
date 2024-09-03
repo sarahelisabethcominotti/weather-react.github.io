@@ -24,7 +24,7 @@ function SearchInput(props) {
             <Button
               variant="contained"
               type="submit"
-              color="cyan"
+              color="primary"
               startIcon={<SearchIcon />}
               
             >

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
 
+// eslint-disable-next-line react/prop-types
 function CreateCardContent({ data, city, checked }) {
 
 const celsiusTemperature = Math.floor(data.main.temp * (9/5) + 32)
