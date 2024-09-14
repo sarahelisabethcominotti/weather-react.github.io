@@ -10,16 +10,24 @@ function LoadingPage() {
         variant="h4"
         sx={{ textAlign: "center", paddingBottom: "10px" }}
       >
-        Finding your city...
+        <p>Finding your city...</p>
+
+        <p>If your location has been disabled please search for a city.</p>
       </Typography>
       {/* <div className="text-center">
         <div className="spinner-border" role="status"></div>
       </div> */}
       <div className="loader-container">
         <div className="bouncing-drops">
-          <div className="drop"><WaterDropIcon color="primary"/></div>
-          <div className="drop"><WaterDropIcon color="primary"/></div>
-          <div className="drop"><WaterDropIcon color="primary"/></div>
+          <div className="drop">
+            <WaterDropIcon color="primary" />
+          </div>
+          <div className="drop">
+            <WaterDropIcon color="primary" />
+          </div>
+          <div className="drop">
+            <WaterDropIcon color="primary" />
+          </div>
         </div>
       </div>
     </Box>

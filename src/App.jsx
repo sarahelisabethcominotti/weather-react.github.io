@@ -58,7 +58,7 @@ function App() {
       }
     });
   }, []);
-  console.log(isLoading);
+  // console.log(isLoading);
 
   // useEffect(() => {
   //   if (city) {
