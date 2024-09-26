@@ -73,12 +73,15 @@ function App() {
       const response = await fetch(weatherAPIWeatherForecast);
       if (!response.ok) throw response;
       const data = await response.json();
-      // console.log(data)
+      const newCity = data.city.name
+      // console.log("disabled location", data)
+      // console.log("disabled location cityname", newCity)
       const filterData = data.list.filter((item) =>
         item.dt_txt.includes("12:00:00")
       );
       // console.log(filterData);
       setFilterData(filterData);
+      setCity(newCity)
     } catch (err) {
       alert("please enter a valid city");
 
@@ -94,6 +97,7 @@ function App() {
 
   const handleCityChange = (event) => {
     setCity(event.target.value);
+    console.log("handler city")
   };
 
   const handleSubmit = (event) => {

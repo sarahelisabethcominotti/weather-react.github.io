@@ -36,7 +36,8 @@ export const cityLocation = async (a, b) => {
     if (!response.ok) throw response;
     const data = await response.json();
     userCity = data[0].name;
-    console.log(data);
+    // console.log("enabled location data", data);
+    // console.log("enabled location userCity", userCity)
     return userCity;
   } catch (err) {
     // alert("please enter a valid city");
