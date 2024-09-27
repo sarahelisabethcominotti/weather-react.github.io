@@ -73,15 +73,15 @@ function App() {
       const response = await fetch(weatherAPIWeatherForecast);
       if (!response.ok) throw response;
       const data = await response.json();
-      const newCity = data.city.name
-      // console.log("disabled location", data)
+      const renderCity = data.city.name + ", " + data.city.country
+      console.log("disabled location", data)
       // console.log("disabled location cityname", newCity)
       const filterData = data.list.filter((item) =>
         item.dt_txt.includes("12:00:00")
       );
       // console.log(filterData);
       setFilterData(filterData);
-      setCity(newCity)
+      setCity(renderCity)
     } catch (err) {
       alert("please enter a valid city");
 
