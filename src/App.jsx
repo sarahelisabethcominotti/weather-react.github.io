@@ -73,7 +73,8 @@ function App() {
       const response = await fetch(weatherAPIWeatherForecast);
       if (!response.ok) throw response;
       const data = await response.json();
-      const renderCity = data.city.name + ", " + data.city.country
+      // const renderCity = data.city.name + ", " + data.city.country
+      const cityData = data.city
       console.log("disabled location", data)
       // console.log("disabled location cityname", newCity)
       const filterData = data.list.filter((item) =>
@@ -81,7 +82,7 @@ function App() {
       );
       // console.log(filterData);
       setFilterData(filterData);
-      setCity(renderCity)
+      setCity(cityData)
     } catch (err) {
       alert("please enter a valid city");
 
@@ -136,7 +137,7 @@ const switchHandler = (event) => {
                 handlerCity={handleCityChange}
                 handler={handleSubmit}
                 setter={setCity}
-                city={city}
+                city={city.name}
          
               />
               <Typography>°F</Typography>
