@@ -47,10 +47,10 @@ function App() {
         lat, long, timestamp, userCity;
 
         try {
-          const cityName = await cityLocation(lat, long);
+          const city = await cityLocation(lat, long);
           console.log("Accessed outside function - User City:", city);
-          setCity(cityName);
-          loadWeather(cityName);
+          setCity(city);
+          loadWeather(city);
           setIsLoading(false);
         } catch (err) {
           console.error("Error fetching city location:", err);
