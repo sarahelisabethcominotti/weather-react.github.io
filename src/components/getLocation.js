@@ -1,4 +1,4 @@
-import { weatherAPIKey } from "./api-key";
+const weatherAPIKey = process.env.REACT_APP_API_KEY
 
 export let lat, long, timestamp, userCity;
 export function getLocation(callback) {
