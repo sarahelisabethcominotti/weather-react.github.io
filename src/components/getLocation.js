@@ -29,7 +29,7 @@ export function getLocation(callback) {
 
 export const cityLocation = async (a, b) => {
   // const weatherAPIWeatherForecastLatLong = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${weatherAPIKey}&units=metric`;
-  const getCityLocation = `http://api.openweathermap.org/geo/1.0/reverse?lat=${a}&lon=${b}&appid=${weatherAPIKey}`;
+  const getCityLocation = `https://api.openweathermap.org/geo/1.0/reverse?lat=${a}&lon=${b}&appid=${weatherAPIKey}`;
   console.log(getCityLocation);
   try {
     const response = await fetch(getCityLocation);

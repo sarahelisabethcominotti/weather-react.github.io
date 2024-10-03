@@ -35,22 +35,22 @@ function App() {
   const [city, setCity] = useState("");
   // console.log("city:", city);
   const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
     setIsLoading(true);
     getLocation(async (err) => {
       if (err) {
         console.error(err.message);
       } else {
-        console.log("Accessed outside function - Latitude:", lat);
-        console.log("Accessed outside function - Longitude:", long);
+
         lat, long, timestamp, userCity;
 
         try {
-          const city = await cityLocation(lat, long);
-          console.log("Accessed outside function - User City:", city);
-          setCity(city);
-          loadWeather(city);
+          const cityName = await cityLocation(lat, long);
+          console.log("Accessed outside function - Latitude:", lat);
+          console.log("Accessed outside function - Longitude:", long);
+          console.log("Accessed outside function - User City:", cityName);
+          setCity(cityName);
+          loadWeather(cityName);
           setIsLoading(false);
         } catch (err) {
           console.error("Error fetching city location:", err);
