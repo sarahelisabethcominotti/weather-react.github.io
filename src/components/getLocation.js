@@ -1,5 +1,4 @@
-const weatherAPIKey = process.env.REACT_APP_API_KEY
-
+import { weatherAPIKey } from "./api-key";
 export let lat, long, timestamp, userCity;
 export function getLocation(callback) {
   if (!navigator.geolocation) {

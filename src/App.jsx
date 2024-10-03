@@ -20,9 +20,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 // import AntTabs, { AntTab } from "./components-styles";
 import { Tabs, Tab, Switch } from "@mui/material";
+import { weatherAPIKey } from "./api-key";
 
 export const DataContext = createContext()
-const weatherAPIKey = process.env.REACT_APP_API_KEY
 
 function App() {
   // cityLocation(lat, long)
