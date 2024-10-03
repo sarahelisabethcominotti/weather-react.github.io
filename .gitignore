@@ -23,5 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 
-# API calling
-api-key.js
+.env

@@ -4,7 +4,6 @@ import "./App.css";
 import LoadingPage from "./components/LoadingPage";
 import WeatherApp from "./components/WeatherApp";
 import { useState, useEffect, useContext, createContext } from "react";
-import { weatherAPIKey } from "./components/api-key";
 import {
   getLocation,
   userCity,
@@ -23,6 +22,7 @@ import Typography from "@mui/material/Typography";
 import { Tabs, Tab, Switch } from "@mui/material";
 
 export const DataContext = createContext()
+const weatherAPIKey = process.env.REACT_APP_API_KEY
 
 function App() {
   // cityLocation(lat, long)
