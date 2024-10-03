@@ -35,11 +35,11 @@ function CreateCardContent({ data, city, checked }) {
                 <Typography sx={{ fontSize: 18 }}>City 🏙️</Typography>
                 <Typography>{city.name}, {city.country}</Typography>
                 <Grid container>
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={6} md={6}>
                     <Typography>Sunrise 🌆</Typography>
                     <Typography>{formattedSunrise}am</Typography>
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={6} md={6}>
                     <Typography>Sunset 🌃</Typography>
                     <Typography>{formattedSunset}pm</Typography>
                   </Grid>
