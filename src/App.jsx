@@ -20,7 +20,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 // import AntTabs, { AntTab } from "./components-styles";
 import { Tabs, Tab, Switch } from "@mui/material";
-import { weatherAPIKey } from "./api-key";
+import { weatherAPIKey } from "./components/api-key";
 
 export const DataContext = createContext()
 
