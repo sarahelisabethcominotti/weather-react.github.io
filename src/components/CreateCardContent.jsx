@@ -3,13 +3,16 @@ import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
 function CreateCardContent({ data, city, checked }) {
-  console.log(data)
+  console.log("data", data)
+  console.log("city-data", city)
   const fahrenheitTemperature = Math.floor(data.main.temp * (9 / 5) + 32);
   const fahrenheitMax = Math.floor(data.main.temp_max * (9 / 5) + 32);
   const fahrenheitMin = Math.floor(data.main.temp_min * (9 / 5) + 32);
 
   const sunrise = new Date(city.sunrise * 1000)
   const sunset = new Date(city.sunset * 1000)
+  const currentTime = Date.now()
+  const darkmode = false
 
   const sunriseHours = sunrise.getHours()
   const sunriseMinutes = "0" + sunrise.getMinutes()
@@ -19,6 +22,16 @@ function CreateCardContent({ data, city, checked }) {
   const sunsetMinutes = "0" + sunset.getMinutes()
   const formattedSunset = sunsetHours + ":" + sunsetMinutes.substr(-2)
 
+  // if (currentTime > city.sunset || currrentTime < city.sunrise) {
+  //   dakmode
+  // } 
+
+  // currentTime > city.sunset || currentTime < city.sunrise ? darkmode = true
+
+  // if ( currentTime > city.sunset || currentTime < city.sunrise ) {
+  //   darkmode ==== true
+  // }
+
   return (
     <>
       <Box sx={{ minWidth: 280 }}>
@@ -26,9 +39,10 @@ function CreateCardContent({ data, city, checked }) {
           <Grid item xs={12} md={6}>
             <Card
               sx={{
-                bgcolor: "rgba(224, 247, 250, 0.7)",
+                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
                 borderRadius: 1,
                 height: "130px",
+                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
               }}
             >
               <CardContent>
@@ -48,7 +62,12 @@ function CreateCardContent({ data, city, checked }) {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1, height: "130px" }}>
+            <Card sx={{
+                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                borderRadius: 1,
+                height: "130px",
+                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+              }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Temperature 🌡️</Typography>
                 <Typography>
@@ -71,7 +90,11 @@ function CreateCardContent({ data, city, checked }) {
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
-            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1 }}>
+            <Card sx={{
+                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                borderRadius: 1,
+                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+              }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Humidity 💧</Typography>
                 <Typography>{data.main.humidity}%</Typography>
@@ -79,7 +102,11 @@ function CreateCardContent({ data, city, checked }) {
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1 }}>
+            <Card sx={{
+                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                borderRadius: 1,
+                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+              }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Wind Speed 💨</Typography>
                 <Typography>{data.wind.speed}km/h</Typography>
@@ -87,7 +114,11 @@ function CreateCardContent({ data, city, checked }) {
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1 }}>
+            <Card sx={{
+                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                borderRadius: 1,
+                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+              }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Conditions ⛅️</Typography>
                 <Typography>{data.weather[0].main}</Typography>
