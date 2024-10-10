@@ -21,8 +21,10 @@ import Typography from "@mui/material/Typography";
 // import AntTabs, { AntTab } from "./components-styles";
 import { Tabs, Tab, Switch } from "@mui/material";
 import { weatherAPIKey } from "./components/api-key";
+import { ThemeProvider } from "@emotion/react";
+import { theme, darkTheme } from "./theme.jsx";
 
-export const DataContext = createContext()
+export const DataContext = createContext();
 
 function App() {
   // cityLocation(lat, long)
@@ -41,7 +43,6 @@ function App() {
       if (err) {
         console.error(err.message);
       } else {
-
         lat, long, timestamp, userCity;
 
         try {
@@ -74,15 +75,15 @@ function App() {
       if (!response.ok) throw response;
       const data = await response.json();
       // const renderCity = data.city.name + ", " + data.city.country
-      const cityData = data.city
-      console.log("disabled location", data)
+      const cityData = data.city;
+      console.log("disabled location", data);
       // console.log("disabled location cityname", newCity)
       const filterData = data.list.filter((item) =>
         item.dt_txt.includes("12:00:00")
       );
       // console.log(filterData);
       setFilterData(filterData);
-      setCity(cityData)
+      setCity(cityData);
     } catch (err) {
       alert("please enter a valid city");
 
@@ -98,7 +99,7 @@ function App() {
 
   const handleCityChange = (event) => {
     setCity(event.target.value);
-    console.log("handler city")
+    console.log("handler city");
   };
 
   const handleSubmit = (event) => {
@@ -110,50 +111,57 @@ function App() {
     }
   };
 
-
-
   // console.log(daysArray);
 
- const [checked, setChecked] = useState(false)
-const switchHandler = (event) => {
-  setChecked(event.target.checked)
-}
+  const [checked, setChecked] = useState(false);
+  const switchHandler = (event) => {
+    setChecked(event.target.checked);
+  };
   return (
     <>
-      <header className="z-1">
-        <Box sx={{ flexGrow: 1, maxWidth:  300 }}>
-          <AppBar position="fixed" color="light">
-            <Toolbar>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ flexGrow: 1, textAlign: 'left', fontSize: {xs: 14, sm: 20}}}
-              >
-                Weather Dashboard
-              </Typography>
-              <SearchInput
-                variant="standard"
-                label="standard"
-                handlerCity={handleCityChange}
-                handler={handleSubmit}
-                setter={setCity}
-                city={city.name}
-         
-              />
-              <Typography>°F</Typography>
-               <Switch checked={checked} onChange={switchHandler} color="default" />
-               <Typography>°C</Typography>
-            </Toolbar>
-          </AppBar>
-        </Box>
-      </header>
-      <main className="z-0">
-        <DataContext.Provider value={{filterData, city, checked}}>
-          {isLoading ? <LoadingPage/> : <WeatherApp/>}
+      <ThemeProvider theme={theme}>
+        <header className="z-1">
+          <Box sx={{ flexGrow: 1, maxWidth: 300 }}>
+            <AppBar position="fixed" color="light">
+              <Toolbar>
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{
+                    flexGrow: 1,
+                    textAlign: "left",
+                    fontSize: { xs: 14, sm: 20 },
+                  }}
+                >
+                  Weather Dashboard
+                </Typography>
+                <SearchInput
+                  variant="standard"
+                  label="standard"
+                  handlerCity={handleCityChange}
+                  handler={handleSubmit}
+                  setter={setCity}
+                  city={city.name}
+                />
+                <Typography>°F</Typography>
+                <Switch
+                  checked={checked}
+                  onChange={switchHandler}
+                  color="default"
+                />
+                <Typography>°C</Typography>
+              </Toolbar>
+            </AppBar>
+          </Box>
+        </header>
+        <main className="z-0">
+          <DataContext.Provider value={{ filterData, city, checked }}>
+            {isLoading ? <LoadingPage /> : <WeatherApp />}
           </DataContext.Provider>
-      </main>
+        </main>
 
-      <footer></footer>
+        <footer></footer>
+      </ThemeProvider>
     </>
   );
 }

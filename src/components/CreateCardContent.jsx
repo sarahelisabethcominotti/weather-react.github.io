@@ -43,10 +43,10 @@ function CreateCardContent({ data, city, checked }) {
           <Grid item xs={12} md={6}>
             <Card
               sx={{
-                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                bgcolor: "light.main",
                 borderRadius: 1,
                 height: "130px",
-                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+                color: "light.contrastText"
               }}
             >
               <CardContent>
@@ -67,10 +67,10 @@ function CreateCardContent({ data, city, checked }) {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card sx={{
-                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                bgcolor: "light.main",
                 borderRadius: 1,
                 height: "130px",
-                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+                color: "light.contrastText"
               }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Temperature 🌡️</Typography>
@@ -95,9 +95,9 @@ function CreateCardContent({ data, city, checked }) {
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
             <Card sx={{
-                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                bgcolor: "light.main",
                 borderRadius: 1,
-                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+                color: "light.contrastText"
               }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Humidity 💧</Typography>
@@ -107,9 +107,9 @@ function CreateCardContent({ data, city, checked }) {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card sx={{
-                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                bgcolor: "light.main",
                 borderRadius: 1,
-                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+                color: "light.contrastText"
               }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Wind Speed 💨</Typography>
@@ -119,9 +119,9 @@ function CreateCardContent({ data, city, checked }) {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card sx={{
-                bgcolor: currentTime > city.sunset || currentTime < city.sunrise ? "#000000" : "rgba(224, 247, 250, 0.7)",
+                bgcolor: "light.main",
                 borderRadius: 1,
-                color: currentTime > city.sunset || currentTime < city.sunrise ? "rgba(224, 247, 250, 0.7)" : "#000000"
+                color: "light.contrastText"
               }}>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }}>Conditions ⛅️</Typography>

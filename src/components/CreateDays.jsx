@@ -20,7 +20,7 @@ function CreateDays(props) {
   // console.log(normalDate)
 
   return (
-    <Card sx={{ bgcolor: "rgba(224, 247, 250, 0.7)", borderRadius: 1, my: 1 }}>
+    <Card sx={{ bgcolor: "light.main", borderRadius: 1, my: 1, color: "light.contrastText" }}>
       {normalDate}
     </Card>
   );

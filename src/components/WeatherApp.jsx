@@ -35,17 +35,18 @@ function WeatherApp() {
     <Box sx={{ width: "90%", justifyContent: "center", mx: "auto" }}>
       <Box
         sx={{
-          bgcolor: "rgba(224, 247, 250, 0.7)",
+          bgcolor: "light.main",
           borderRadius: 1,
           my: 1,
           justifyContent: "center",
+          color: "light.contrastText",
         }}
       >
         <Tabs
+        textColor="white"
           value={value}
           onChange={handleChange}
-          textColor="primary"
-          indicatorColor="primary"
+          sx={{ "& .MuiTabs-indicator": { backgroundColor: "#fff"}}}
           variant="scrollable"
           scrollButtons
           allowScrollButtonsMobile
@@ -55,6 +56,7 @@ function WeatherApp() {
               label={day}
               className={`${activeTab === i ? "active" : ""}`}
               onClick={() => handleTabClick(i)}
+              sx={{ color: "light.contrastText" }}
             />
           ))}
         </Tabs>

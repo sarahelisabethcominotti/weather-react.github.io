@@ -18,24 +18,30 @@ function SearchInput(props) {
               value={props.city}
               onChange={(e) => props.setter(e.target.value)}
               variant="standard"
+              sx={{
+                bgcolor: "light.secondary",
+                color: "light.contrastText"
+              }}
             />
           </Grid>
           <Grid item xs={6}>
-            <Button 
+            <Button
               variant="contained"
               type="submit"
-              color="primary"
+              color="light"
               sx={{
-                display: 'flex',
-                justifyContent: { xs: 'center', sm: 'flex-start' }, // Center icon on small screens, align left with text on larger screens
-                alignItems: 'center',
-                paddingLeft: { xs: '10px', sm: '10px' }, // Adjust padding for small screens
-                paddingRight: { xs: 0, sm: '10px' },
-                minWidth: { xs: 'auto', sm: '64px' } // Ensures button isn't too wide on small screens
-              }}              startIcon={<SearchIcon />}
-
+                display: "flex",
+                justifyContent: { xs: "center", sm: "flex-start" }, // Center icon on small screens, align left with text on larger screens
+                alignItems: "center",
+                paddingLeft: { xs: "10px", sm: "10px" }, // Adjust padding for small screens
+                paddingRight: { xs: 0, sm: "10px" },
+                minWidth: { xs: "auto", sm: "64px" }, // Ensures button isn't too wide on small screens
+              }}
+              startIcon={<SearchIcon />}
             >
-              <Typography sx={{ display: {xs: 'none', sm: 'block'}}}>Search</Typography>
+              <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+                Search
+              </Typography>
             </Button>
           </Grid>
         </Grid>
