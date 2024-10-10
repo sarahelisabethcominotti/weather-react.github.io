@@ -11,8 +11,12 @@ function CreateCardContent({ data, city, checked }) {
 
   const sunrise = new Date(city.sunrise * 1000)
   const sunset = new Date(city.sunset * 1000)
-  const currentTime = Date.now()
-  const darkmode = false
+  const currentTime = Date.now()/1000
+  // console.log("current time", currentTime)
+  // console.log("sunset time", city.sunset)
+  // console.log("sunrise time", city.sunrise)
+
+  // const darkmode = false
 
   const sunriseHours = sunrise.getHours()
   const sunriseMinutes = "0" + sunrise.getMinutes()
