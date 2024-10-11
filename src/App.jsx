@@ -28,7 +28,6 @@ export const DataContext = createContext();
 
 function App() {
   // cityLocation(lat, long)
-
   // console.log("outside", cityLocation(lat, long));
   // console.log("outside city", userCity);
 
@@ -117,9 +116,18 @@ function App() {
   const switchHandler = (event) => {
     setChecked(event.target.checked);
   };
+
+  const currentTime = Date.now()/1000
+
+  // const currentTime = Date.now()/1000
+  console.log("current time", currentTime)
+  console.log("sunset time", city.sunset)
+  console.log("sunrise time", city.sunrise)
+
+  
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider  theme={currentTime > city.sunset || currentTime < city.sunrise ? darkTheme : theme}>
         <header className="z-1">
           <Box sx={{ flexGrow: 1, maxWidth: 300 }}>
             <AppBar position="fixed" color="light">

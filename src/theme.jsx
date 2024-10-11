@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-
+import { alpha } from "@mui/material";
 
 export const theme = createTheme({
   palette: {
@@ -8,7 +8,7 @@ export const theme = createTheme({
     },
     name: "cyan",
     light: {
-      main: "#e0f7fa",
+      main: alpha('#E0F7FA', 0.7),
     },
     white: {
       main: "#ffffff",
@@ -26,10 +26,10 @@ export const darkTheme = createTheme({
     },
     name: "cyan",
     light: {
-      main: `rgba(224, 247, 250, 0.7)`,
+      main: alpha('#A9A9A9', 0.7),
       primary: "#000000",
       secondary: "#A9A9A9",
-      contrastText: "#fff"
+      contrastText: "#fff",
     },
     white: {
       main: "#ffffff",
