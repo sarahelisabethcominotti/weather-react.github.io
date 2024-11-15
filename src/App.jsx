@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import LoadingPage from "./components/LoadingPage";
 import WeatherApp from "./components/WeatherApp";
-import { useState, useEffect, useContext, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import {
   getLocation,
   userCity,
@@ -19,7 +19,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 // import AntTabs, { AntTab } from "./components-styles";
-import { Tabs, Tab, Switch } from "@mui/material";
+import { Switch } from "@mui/material";
 import { weatherAPIKey } from "./components/api-key";
 import { ThemeProvider } from "@emotion/react";
 import { theme, darkTheme } from "./theme.jsx";

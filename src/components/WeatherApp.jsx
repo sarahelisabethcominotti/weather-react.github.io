@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React from "react";
 import { Box, Tabs, Tab } from "@mui/material";
 import { useContext, useState } from "react";
@@ -72,7 +73,7 @@ function WeatherApp() {
               checked={checked}
             />
 
-            <ChangeBackground data={filterData[activeTab]} />
+            <ChangeBackground data={filterData[activeTab]} city={city} />
           </>
         )}
       </div>
